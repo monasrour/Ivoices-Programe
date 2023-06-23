@@ -65,16 +65,32 @@ class SectionController extends Controller
      */
     public function edit(Section $section)
     {
-       return 'edit';
+        return view('sections.edit', compact('section'));
     }
+    
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Section $section)
-    {
-        //
-    }
+{
+    $validatedData = $request->validate([
+        'section_name' => 'required|max:255|unique:sections,section_name,' . $section->id,
+    ], [
+        'section_name.required' => 'يرجى إدخال اسم القسم',
+        'section_name.unique' => 'اسم القسم مسجل مسبقًا',
+        'section_name.max' => 'يجب ألا يتجاوز طول اسم القسم 255 حرفًا',
+    ]);
+
+    $section->update([
+        'section_name' => $request->section_name,
+        'description' => $request->description,
+    ]);
+
+    session()->flash('Edit', 'تم تحديث القسم بنجاح');
+    return redirect('/sections');
+}
+
 
     /**
      * Remove the specified resource from storage.

@@ -75,6 +75,7 @@
 													<td>{{$section->description}}</td>
 													<td>
 														<div class="d-flex " >
+															
 														<a href="{{ route('sections.edit', ['section' => $section->id]) }}"   class="btn btn-primary ">edit</a>
 														<form action="{{ route('sections.destroy', $section->id) }}" method="POST"
 															onsubmit="return confirm('Are you sure you want to delete this Section?');">
@@ -120,8 +121,8 @@
 										</div>
 
 
-										
 
+										
 									</form>
 								</div>
 								
