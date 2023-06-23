@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Section extends Model
 {
     use HasFactory;
+    
+    protected $fillable=[
+        'section_name',
+        'description',
+        'created_by',
+        
+    ];
 }
